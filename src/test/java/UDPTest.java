@@ -11,8 +11,8 @@ public class UDPTest {
 
     @BeforeEach
     public void setup(){
-        new UDPServer().start();
-        client = new UDPClient();
+        new UDPServer(4445).start();
+        client = new UDPClient(4445);
     }
 
     @Test
@@ -20,6 +20,7 @@ public class UDPTest {
         String echo = client.sendEcho("hello server");
         assertEquals("hello server", echo);
         echo = client.sendEcho("server is working");
+        System.out.println(echo);
         assertFalse(echo.equals("hello server"));
     }
 

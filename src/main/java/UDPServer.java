@@ -9,9 +9,9 @@ public class UDPServer extends Thread {
     private boolean running;
     private byte[] buf = new byte[256];
 
-    public UDPServer() {
+    public UDPServer(int port) {
         try {
-            socket = new DatagramSocket(4445);
+            socket = new DatagramSocket(port);
         }
         catch (SocketException soe) {
             System.out.println(soe);
@@ -42,6 +42,7 @@ public class UDPServer extends Thread {
         }
         catch(IOException ioe) {
             System.out.println(ioe);
+            socket.close();
         }
     }
 }
